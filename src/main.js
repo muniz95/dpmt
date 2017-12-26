@@ -1,8 +1,14 @@
 import CLI, { Spinner } from 'clui'
 import dpmt from '../package.json'
 import linkedin from './lib/linkedin'
+import intelly from './lib/intelly'
+import { config } from 'dotenv'
 
 import program from 'commander'
+
+config()
+const email = process.env.email
+const senha = process.env.senha
 
 program
   .version(dpmt.version)
@@ -20,5 +26,10 @@ program
   .command('url')
   .description('URL principal')
   .action(() => console.log(linkedin.site))
+
+program
+  .command('intelly')
+  .description('Login no sistema iSend da IntellyIT')
+  .action(() => intelly.login(email, senha))
 
 program.parse(process.argv)
