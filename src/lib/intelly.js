@@ -1,10 +1,5 @@
-// const axios = require('axios')
-// const axiosCookieJarSupport = require('axios-cookiejar-support').default
-// const tough = require('tough-cookie')
 const request = require('request-promise')
-const querystring = require('querystring')
 const URL = 'http://www.intelly.com.br'
-// const jar = new tough.CookieJar()
 
 const login = async (email, password) => {
   const form = {
