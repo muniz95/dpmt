@@ -1,10 +1,12 @@
-const axios = require('axios')
-const axiosCookieJarSupport = require('axios-cookiejar-support').default;
-const tough = require('tough-cookie');
+// const axios = require('axios')
+// const axiosCookieJarSupport = require('axios-cookiejar-support').default
+// const tough = require('tough-cookie')
+const request = require('request-promise')
+const querystring = require('querystring')
 const URL = 'http://www.intelly.com.br'
-const jar = new tough.CookieJar();
+// const jar = new tough.CookieJar()
 
-const login = (email, password) => {
+const login = async (email, password) => {
   const dataGet = {
     'tipoFonte': 'arial',
     'corFonte': '555d71',
@@ -14,9 +16,9 @@ const login = (email, password) => {
     'tamFonteTitulo': 11,
     'tipoFonteSubTitulo': 'arial',
     'corFonteSubTitulo': 'FF9966',
-    'tamFonteSubTitulo': 11,
+    'tamFonteSubTitulo': 11
   }
-  const dataPost = {
+  const form = {
     loginCad: true,
     tipoFonte: '',
     corFonte: '555d71',
@@ -26,38 +28,62 @@ const login = (email, password) => {
     tamFonteTitulo: '11',
     tipoFonteSubTitulo: '',
     corFonteSubTitulo: 'FF9966',
-    tamFonteSubTitulo: 11
-  }
-  
-  const authPost = {
+    tamFonteSubTitulo: 11,
     login: email,
     senha: password
   }
   
-  const headers = {
-    'Content-Type': 'application/x-www-form-urlencoded'
+  // const authPost = {
+  //   login: email,
+  //   senha: password
+  // }
+  
+  // const headers = {
+  //   'Content-Type': 'application/x-www-form-urlencoded'
+  // }
+  
+  var formData = querystring.stringify(form);
+  var contentLength = formData.length;
+  
+  const preOptions = {
+    uri: `${URL}/Extranet/loginCandidatoCad.do`
   }
-  axiosCookieJarSupport(axios);
-  const instance = axios.create({
-    baseURL: URL,
-    headers,
-    jar,
-    withCredentials: true
+  const options = {
+    uri: `${URL}/Extranet/loginCandidato.do`,
+    form,
+    headers
+  }
+  var headers = { 
+    'Content-Type' : 'application/x-www-form-urlencoded' 
+  };
+  const req = request.defaults({
+    jar: true
   })
   
-  instance.get(`/Extranet/loginCandidatoCad.do`, {params: dataGet})
-    .then(res => console.log(res.data))
-    .catch(err => console.error(err))
+  // await req.get(preOptions)
   
-  instance.post(`/Extranet/loginCandidato.do`, {
-    data: dataPost,
-    auth: authPost
-  })
+  // await req.post(options)
+  req.post(options)
     .then(res => console.log(res))
-    .catch(err => {
-      console.error(err.response.data)
-    })
+    .catch(err => console.log(err))
+
+  return req
+  
+  // instance.get(`/Extranet/loginCandidatoCad.do`, {params: dataGet})
+  //   .then(res => console.log(res.data))
+  //   .catch(err => console.error(err))
+  
+  // instance.post(`/Extranet/loginCandidato.do`, {
+  //   data: dataPost,
+  //   auth: authPost
+  // })
+  //   .then(res => console.log(res))
+  //   .catch(err => {
+  //     console.error(err.response.data)
+  //   })
 }
+
+// const get
 
 export default {
   login

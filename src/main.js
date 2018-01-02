@@ -2,6 +2,7 @@ import CLI, { Spinner } from 'clui'
 import dpmt from '../package.json'
 import linkedin from './lib/linkedin'
 import intelly from './lib/intelly'
+import infojobs from './lib/infojobs'
 import { config } from 'dotenv'
 
 import program from 'commander'
@@ -31,5 +32,10 @@ program
   .command('intelly')
   .description('Login no sistema iSend da IntellyIT')
   .action(() => intelly.login(email, senha))
+
+program
+  .command('infojobs')
+  .description('Login no sistema do Infojobs')
+  .action(() => infojobs.getCandidate(email, senha))
 
 program.parse(process.argv)
