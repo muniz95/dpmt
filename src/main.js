@@ -3,11 +3,13 @@ import dpmt from '../package.json'
 import linkedin from './lib/linkedin'
 import intelly from './lib/intelly'
 import infojobs from './lib/infojobs'
+import vagas from './lib/vagas'
 import { config } from 'dotenv'
 
 import program from 'commander'
 
 config()
+const username = process.env.username
 const email = process.env.email
 const senha = process.env.senha
 
@@ -37,5 +39,10 @@ program
   .command('infojobs')
   .description('Login no sistema do Infojobs')
   .action(() => infojobs.getCandidate(email, senha))
+
+program
+  .command('vagas')
+  .description('Login no sistema do Vagas.com')
+  .action(() => vagas.getServices(username, senha))
 
 program.parse(process.argv)
