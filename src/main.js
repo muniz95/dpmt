@@ -43,6 +43,6 @@ program
 program
   .command('vagas')
   .description('Login no sistema do Vagas.com')
-  .action(() => vagas.getServices(username, senha))
+  .action(() => vagas.getCandidateHistory(username, senha))
 
 program.parse(process.argv)

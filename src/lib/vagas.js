@@ -2,17 +2,6 @@ const request = require('request-promise')
 const URL = 'https://www.vagas.com.br'
 
 const login = async (username, password) => {
-  
-  const redirectOn302 = (body, response, resolveWithFullResponse) => {
-      if (response.statusCode === 302) {
-        console.log(response)
-          // Set the new url (this is the options object)
-          this.url = response['the redirect url somehow'];
-          return request(options);
-      } else {
-          return resolveWithFullResponse ? response : body;
-      }
-  }
   const headers = { 
     'Content-Type' : 'application/x-www-form-urlencoded' 
   }
@@ -51,7 +40,16 @@ const getServices = (username, password) => {
   })
 }
 
+const getCandidateHistory = (username, password) => {
+  login(username, password).then(req => {
+    req.get(`${URL}/_HistCand2.asp`)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  })
+}
+
 export default {
   login,
-  getServices
+  getServices,
+  getCandidateHistory
 }
