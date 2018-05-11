@@ -1,8 +1,10 @@
-import request from 'request-promise'
-const URL = 'https://www.infojobs.com.br/'
+import * as request from 'request-promise';
+const URL = 'https://www.infojobs.com.br/';
 
 class Infojobs {
-  constructor() {
+  private req: any;
+
+  Infojobs() {
     this._req = null
     this.login = this.login.bind(this)
     this.getCandidate = this.getCandidate.bind(this)
