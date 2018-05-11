@@ -2,12 +2,14 @@ import CLI, { Spinner } from 'clui'
 import dpmt from '../package.json'
 import linkedin from './lib/linkedin'
 import intelly from './lib/intelly'
-import infojobs from './lib/infojobs'
+import './lib/infojobs'
 import vagas from './lib/vagas'
 import meta from './lib/meta'
 import { config } from 'dotenv'
 
+import readline from 'readline'
 import program from 'commander'
+import Infojobs from './lib/infojobs';
 
 config()
 const username = process.env.username
@@ -40,7 +42,13 @@ program
 program
   .command('infojobs')
   .description('Login no sistema do Infojobs')
-  .action(() => infojobs.getCandidate(email, senha))
+  .action(async () => {
+    const infojobs = new Infojobs()
+    infojobs.login(email, senha)
+    const stdin = process.openStdin();
+
+    stdin.addListener("data", infojobs.prompt);
+  })
 
 program
   .command('vagas')
