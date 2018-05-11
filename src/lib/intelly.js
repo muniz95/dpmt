@@ -1,4 +1,4 @@
-const request = require('request-promise')
+import request from 'request-promise'
 const URL = 'http://www.intelly.com.br'
 
 const login = async (email, password) => {

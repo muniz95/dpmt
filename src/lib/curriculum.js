@@ -1,4 +1,4 @@
-const request = require('request-promise')
+import request from 'request-promise'
 const URL = ''
 const LOGIN_URL = 'https://login.ucn.com.br/Login.aspx'
 

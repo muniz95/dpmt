@@ -1,4 +1,4 @@
-const request = require('request-promise')
+import request from 'request-promise'
 const LOGIN_URL = 'http://meta.ats.peoplenect.com/cgi-bin/a/viewprofile.cgi'
 
 const login = (username, password) => {

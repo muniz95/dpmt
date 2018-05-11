@@ -1,4 +1,4 @@
-const request = require('request-promise')
+import request from 'request-promise'
 const URL = 'https://www.vagas.com.br'
 
 const login = async (username, password) => {
