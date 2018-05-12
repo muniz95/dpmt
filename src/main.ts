@@ -40,10 +40,11 @@ program
   .description('Login no sistema do Infojobs')
   .action(async () => {
     const infojobs: Infojobs = new Infojobs()
-    infojobs.login(email, senha)
-    const stdin = process.openStdin();
+    await infojobs.login(email, senha)
+    infojobs.getJobApplications()
+    // const stdin = process.openStdin();
 
-    stdin.addListener("data", infojobs.prompt);
+    // stdin.addListener("data", infojobs.prompt);
   })
 
 program

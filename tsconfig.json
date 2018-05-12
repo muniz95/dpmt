@@ -1,6 +1,6 @@
 {
     "files": [
-        "./node_modules/@types/request-promise/index.d.ts"
+        "src/typings.d.ts"
     ],
     "compilerOptions": {
         "outDir": "build",
