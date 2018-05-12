@@ -1,17 +1,17 @@
-import * as request from 'request-promise';
+import request from 'request-promise';
 const URL = 'https://www.infojobs.com.br/';
 
 class Infojobs {
   private req: any;
 
   Infojobs() {
-    this._req = null
+    this.req = null
     this.login = this.login.bind(this)
     this.getCandidate = this.getCandidate.bind(this)
     this.prompt = this.prompt.bind(this)
   }
 
-  async login (email, password) {
+  async login (email: string, password: string): Promise<void> {
     const options = {
       uri: `${URL}/App_WebServices/Ajax/User.asmx/Login`,
       json: {pEmail: email, pPwd: password, pIsRememberChecked: true}
@@ -21,20 +21,17 @@ class Infojobs {
     })
     
     await req.post(options)
-    // req.post(options)
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err.error))
-    console.log('logado')
+    console.log(req)
 
-    this._req = req
+    this.req = req
   }
 
-  getCandidate () {
-    this._req.get(`${URL}/candidate/`)
-      .then(res => console.log(res))
+  public getCandidate (): void {
+    this.req.get(`${URL}/candidate/`)
+      .then((res: request.RequestPromise) => console.log(res))
   }
 
-  prompt (input) {
+  public prompt (input: string) {
     const option = input.toString().trim()
     if (option === '9') process.exit()
     console.log("you entered: [" + option + "]");

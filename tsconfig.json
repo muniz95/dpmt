@@ -1,4 +1,7 @@
 {
+    "files": [
+        "./node_modules/@types/request-promise/index.d.ts"
+    ],
     "compilerOptions": {
         "outDir": "build",
         "target": "es2015",
@@ -21,7 +24,11 @@
         "noFallthroughCasesInSwitch": true,
         "esModuleInterop": true
     },
+    "include": [
+        "src/**/*.ts"
+    ],
     "exclude": [
         "node_modules",
         "dist"
     ]
+}

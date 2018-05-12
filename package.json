@@ -5,6 +5,7 @@
   "main": "build/main.js",
   "scripts": {
     "start": "npm run build && node build/main.js",
+    "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf build/ && tsc",
     "prepublish": "npm run build"
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/muniz95/dpmt#readme",
   "dependencies": {
+    "@types/dotenv": "^4.0.3",
     "axios": "^0.17.1",
     "axios-cookiejar-support": "^0.3.1",
     "chalk": "^2.3.0",
@@ -35,19 +37,20 @@
   "devDependencies": {
     "@types/jsdom": "^11.0.4",
     "@types/node": "^9.6.0",
+    "@types/request-promise": "^4.1.41",
     "@types/tempy": "^0.1.0",
     "@types/zen-observable": "^0.5.3",
     "ava": "*",
     "del-cli": "^1.1.0",
+    "dotenv": "^4.0.0",
     "jsdom": "^11.6.2",
+    "rimraf": "^2.6.2",
     "rxjs": "^6.0.0",
     "tempy": "^0.2.1",
     "tslint": "^5.9.1",
     "tslint-xo": "^0.7.0",
     "typescript": "^2.8.1",
-    "zen-observable": "^0.8.8",
-    "dotenv": "^4.0.0",
-    "rimraf": "^2.6.2"
+    "zen-observable": "^0.8.8"
   },
   "types": "dist/index.d.ts"
 }

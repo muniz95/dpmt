@@ -1,9 +1,9 @@
 const site = 'https://linkedin.com/in'
 
-const login = () => {
+class Linkedin {
+  public login() {
+    return site
+  }
+}
   
-}
-
-export default {
-  site
-}
+export default Linkedin

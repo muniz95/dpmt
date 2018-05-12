@@ -1,21 +1,19 @@
-import CLI, { Spinner } from 'clui'
+// import CLI, { Spinner } from 'clui'
 import dpmt from '../package.json'
-import linkedin from './lib/linkedin'
-import intelly from './lib/intelly'
-import './lib/infojobs'
-import vagas from './lib/vagas'
-import meta from './lib/meta'
+import './lib/linkedin'
+import Intelly from './lib/intelly'
+import Infojobs from './lib/infojobs'
+import Vagas from './lib/vagas'
+import Meta from './lib/meta'
 import { config } from 'dotenv'
 
-import readline from 'readline'
 import program from 'commander'
-import Infojobs from './lib/infojobs';
 
 config()
-const username = process.env.username
-const cpf = process.env.cpf
-const email = process.env.email
-const senha = process.env.senha
+const username: any = process.env.username
+const cpf: any = process.env.cpf
+const email: any = process.env.email
+const senha: any = process.env.senha
 
 program
   .version(dpmt.version)
@@ -26,24 +24,22 @@ program
   .alias('t')
   .description('Test')
   .action(
-    (param1, param2) => console.log(param1, param2)
+    (param1: string, param2: string) => console.log(param1, param2)
   )
-
-program
-  .command('url')
-  .description('URL principal')
-  .action(() => console.log(linkedin.site))
 
 program
   .command('intelly')
   .description('Login no sistema iSend da IntellyIT')
-  .action(() => intelly.login(email, senha))
+  .action(() => {
+    const intelly: Intelly = new Intelly()
+    intelly.login(email, senha)
+  })
 
 program
   .command('infojobs')
   .description('Login no sistema do Infojobs')
   .action(async () => {
-    const infojobs = new Infojobs()
+    const infojobs: Infojobs = new Infojobs()
     infojobs.login(email, senha)
     const stdin = process.openStdin();
 
@@ -53,11 +49,19 @@ program
 program
   .command('vagas')
   .description('Login no sistema do Vagas.com')
-  .action(() => vagas.getCandidateHistory(username, senha))
+  .action(async () => {
+    const vagas: Vagas = new Vagas()
+    await vagas.login(username, senha)
+    vagas.getServices()
+  })
 
 program
   .command('meta')
   .description('Login no sistema da Meta IT')
-  .action(() => meta.login(cpf, senha))
+  .action(async () => {
+    const meta: Meta = new Meta()
+    await meta.login(cpf, senha)
+    console.log(meta.html());
+  })
 
 program.parse(process.argv)
