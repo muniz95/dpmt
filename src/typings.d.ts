@@ -4,3 +4,4 @@ declare module "*.json" {
 }
 declare module 'dotenv'
 declare module 'commander'
+declare module 'request-promise'

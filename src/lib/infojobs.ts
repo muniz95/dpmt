@@ -6,12 +6,9 @@ class Infojobs {
 
   Infojobs() {
     this.req = null
-    this.login = this.login.bind(this)
-    this.getCandidate = this.getCandidate.bind(this)
-    this.prompt = this.prompt.bind(this)
   }
 
-  async login (email: string, password: string): Promise<void> {
+  public async login (email: string, password: string): Promise<void> {
     const options = {
       uri: `${URL}/App_WebServices/Ajax/User.asmx/Login`,
       json: {pEmail: email, pPwd: password, pIsRememberChecked: true}
@@ -21,20 +18,19 @@ class Infojobs {
     })
     
     await req.post(options)
-    console.log(req)
 
     this.req = req
   }
 
-  public getCandidate (): void {
+  public getCandidate = (): void => {
     this.req.get(`${URL}/candidate/`)
-      .then((res: request.RequestPromise) => console.log(res))
+      .then((res: any) => console.log(res))
   }
 
-  public prompt (input: string) {
+  public prompt = (input: string) => {
+    console.log("ESCOLHA\n\n");
     const option = input.toString().trim()
     if (option === '9') process.exit()
-    console.log("you entered: [" + option + "]");
     this.getCandidate();
   }
 }
