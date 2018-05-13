@@ -30,9 +30,10 @@ program
 program
   .command('intelly')
   .description('Login no sistema iSend da IntellyIT')
-  .action(() => {
+  .action(async () => {
     const intelly: Intelly = new Intelly()
-    intelly.login(email, senha)
+    await intelly.login(email, senha)
+    intelly.getHome()
   })
 
 program

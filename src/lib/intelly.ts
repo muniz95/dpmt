@@ -1,12 +1,11 @@
 import request from 'request-promise'
+import { parseStringToHTML } from '../util/html';
+import { getResumeData } from './selectors/intellySelector';
 const URL = 'http://www.intelly.com.br'
 
 class Intelly{
-  private req: any
-
-  Intelly() {
-    this.req = null
-  }
+  // private req: any
+  private homePage: any
 
   public async login (email: string, password: string) {
     const form = {
@@ -38,13 +37,13 @@ class Intelly{
       jar: true
     })
     
-    await req.post(options)
+    this.homePage = await req.post(options)
 
-    this.req = req
+    // this.req = req
   }
 
-  public request() {
-    return this.req
+  public getHome() {
+    console.log(getResumeData(parseStringToHTML(this.homePage)))
   }
 }
 

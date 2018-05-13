@@ -22,19 +22,23 @@
   "homepage": "https://github.com/muniz95/dpmt#readme",
   "dependencies": {
     "@types/dotenv": "^4.0.3",
+    "@types/iconv": "^2.1.16",
     "@types/jsdom": "^11.0.4",
+    "@types/utf8": "^2.1.6",
     "axios": "^0.17.1",
     "axios-cookiejar-support": "^0.3.1",
     "chalk": "^2.3.0",
     "clui": "^0.3.6",
     "commander": "^2.11.0",
+    "iconv": "^2.3.0",
     "inquirer": "^3.3.0",
     "jsdom": "^11.10.0",
     "lowdb": "^1.0.0",
     "querystring": "^0.2.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
-    "tough-cookie": "^2.3.3"
+    "tough-cookie": "^2.3.3",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^9.6.0",
