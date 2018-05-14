@@ -1,4 +1,4 @@
-import { Iconv } from 'iconv'
+// import { Iconv } from 'iconv'
 
 export const getResumeData = (document: Document) => {
     return {
@@ -31,13 +31,35 @@ export const getResumeData = (document: Document) => {
         fluencia1: extract('candidato_fluencia1', document),
         idioma2: extract('candidato_idioma2', document),
         fluencia2: extract('candidato_fluencia2', document),
+        experiencias: extractExperiences(document),
     }
 }
 
 const extract = (name: string, document: Document) => {
-    var ic = new Iconv('iso-8859-1', 'utf-8');
-    var buf = ic.convert(
-        (document.getElementsByName(name)[0] as HTMLInputElement).value
+    // var ic = new Iconv('latin1', 'UTF-8');
+    // var buf = ic.convert(
+    //     new Buffer((document.getElementsByName(name)[0] as HTMLInputElement).value, 'binary')
+    // )
+    // return buf.toString('utf-8')
+    return (document.getElementsByName(name)[0] as HTMLInputElement).value
+}
+
+const extractExperiences = (document: Document) => {
+    const trExperiences =  Array.from(
+        (document.getElementById('experiencias') as HTMLElement)
+        .children[0]
+        .children
     )
-    return buf.toString('utf-8')
+    return trExperiences.map((tr: Element) => {
+        const rows = tr.children[0].children[0].children[0].children
+        return {
+            expType: (rows[0].children[1].children[0] as HTMLSelectElement).value,
+            company: (rows[1].children[1].children[0] as HTMLInputElement).value,
+            country: (rows[2].children[1].children[0] as HTMLInputElement).value,
+            state: (rows[3].children[1].children[0] as HTMLInputElement).value,
+            city: (rows[4].children[1].children[0] as HTMLInputElement).value,
+            startDate: (rows[7].children[1].children[0] as HTMLInputElement).value,
+            endDate: (rows[8].children[1].children[0] as HTMLInputElement).value,
+        }
+    })
 }

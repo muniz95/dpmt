@@ -24,7 +24,14 @@ class Intelly{
     }
     
     const headers = { 
-      'Content-Type' : 'application/x-www-form-urlencoded' 
+      'Accept': 'text / html, application/xhtml+xml,application/xml; q=0.9, */*;q=0.8',
+      'Accept-Encoding': 'binary',
+      'Accept-Language': 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4,eo;q=0.2',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Host': 'www.intelly.com.br',
+      'Referer': 'http://www.intelly.com.br/Extranet/loginCandidatoCad.do',
+      'Upgrade-Insecure-Requests': '1',
+      'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101 Firefox/59.0'
     }
     
     const options = {
