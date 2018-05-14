@@ -1,5 +1,3 @@
-// import { Iconv } from 'iconv'
-
 export const getResumeData = (document: Document) => {
     return {
         nome: extract('candidato_nome', document),
@@ -36,11 +34,6 @@ export const getResumeData = (document: Document) => {
 }
 
 const extract = (name: string, document: Document) => {
-    // var ic = new Iconv('latin1', 'UTF-8');
-    // var buf = ic.convert(
-    //     new Buffer((document.getElementsByName(name)[0] as HTMLInputElement).value, 'binary')
-    // )
-    // return buf.toString('utf-8')
     return (document.getElementsByName(name)[0] as HTMLInputElement).value
 }
 
