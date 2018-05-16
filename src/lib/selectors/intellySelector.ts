@@ -51,8 +51,10 @@ const extractExperiences = (document: Document) => {
             country: (rows[2].children[1].children[0] as HTMLInputElement).value,
             state: (rows[3].children[1].children[0] as HTMLInputElement).value,
             city: (rows[4].children[1].children[0] as HTMLInputElement).value,
-            startDate: (rows[7].children[1].children[0] as HTMLInputElement).value,
-            endDate: (rows[8].children[1].children[0] as HTMLInputElement).value,
+            startDate: (rows[7].querySelector('input') as HTMLInputElement).value,
+            endDate: (rows[8].querySelector('input[type=text]') as HTMLInputElement).value,
+            currentJob: (rows[8].querySelector('input[type=checkbox]') as HTMLInputElement).checked,
+            activities: (rows[9].children[1].children[0] as HTMLInputElement).value,
         }
     })
 }
