@@ -5,7 +5,7 @@ const URL = 'http://www.intelly.com.br'
 
 class Intelly{
   // private req: any
-  private homePage: any
+  private homePage: string = ''
 
   public async login (email: string, password: string) {
     const form = {
@@ -49,7 +49,7 @@ class Intelly{
     // this.req = req
   }
 
-  public getHome() {
+  public getHome(): void {
     console.log(getResumeData(parseStringToHTML(this.homePage)))
   }
 }

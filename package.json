@@ -5,6 +5,7 @@
   "main": "build/main.js",
   "scripts": {
     "start": "npm run build && node build/main.js",
+    "tslint": "tslint",
     "tsc": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf build/ && tsc",
@@ -44,8 +45,8 @@
     "@types/request-promise": "^4.1.41",
     "dotenv": "^4.0.0",
     "rimraf": "^2.6.2",
-    "tslint": "^5.9.1",
-    "typescript": "^2.8.1"
+    "tslint": "^5.16.0",
+    "typescript": "^3.4.5"
   },
   "types": "dist/index.d.ts"
 }

@@ -10,10 +10,10 @@ import { config } from 'dotenv'
 import program from 'commander'
 
 config()
-const username: any = process.env.username
-const cpf: any = process.env.cpf
-const email: any = process.env.email
-const senha: any = process.env.senha
+const username: string = process.env.username || ''
+const cpf: string = process.env.cpf || ''
+const email: string = process.env.email || ''
+const senha: string = process.env.senha || ''
 
 program
   .version(dpmt.version)
