@@ -1,36 +1,36 @@
-import request from 'request-promise'
-const LOGIN_URL = 'http://meta.ats.peoplenect.com/cgi-bin/a/viewprofile.cgi'
+import request from "request-promise";
+const LOGIN_URL = "http://meta.ats.peoplenect.com/cgi-bin/a/viewprofile.cgi";
 
 class Meta {
-  private req: any
+  private req: any;
 
-  public async login (username: string, password: string) {
+  public async login(username: string, password: string) {
     const form = {
-      username,
+      Login: "Log+In",
       password,
-      what2do: 'login',
-      Login: 'Log+In',
+      username,
+      what2do: "login",
       // Login: 'Enviar'
-    }
-    const headers = { 
-      'Content-Type' : 'application/x-www-form-urlencoded' 
-    }
+    };
+    const headers = {
+      "Content-Type" : "application/x-www-form-urlencoded",
+    };
     const options = {
-      uri: LOGIN_URL,
       form,
-      headers
-    }
+      headers,
+      uri: LOGIN_URL,
+    };
     const req = request.defaults({
-      jar: true
-    })
-    
-    await req.post(options)
+      jar: true,
+    });
 
-    this.req = req
+    await req.post(options);
+
+    this.req = req;
   }
 
   public html() {
-    return this.req
+    return this.req;
   }
 }
-export default Meta
+export default Meta;

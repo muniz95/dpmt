@@ -1,9 +1,9 @@
-const site = 'https://linkedin.com/in'
+const site = "https://linkedin.com/in";
 
 class Linkedin {
   public login() {
-    return site
+    return site;
   }
 }
-  
-export default Linkedin
+
+export default Linkedin;
