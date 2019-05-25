@@ -42,10 +42,7 @@ program
   .action(async () => {
     const infojobs: Infojobs = new Infojobs();
     await infojobs.login(email, senha);
-    infojobs.getJobApplications();
-    // const stdin = process.openStdin();
-
-    // stdin.addListener("data", infojobs.prompt);
+    infojobs.takeInput();
   });
 
 program
