@@ -50,8 +50,9 @@ class Infojobs {
     console.log(chalk.bgYellow.black("1 - Aplicação em vagas"));
     console.log(chalk.bgYellow.black("2 - Dados pessoais"));
     console.log(chalk.bgCyan.black("\n\nPressione qualquer outra tecla para sair"));
-    const stdin = process.openStdin();
-    stdin.addListener("data", this.prompt);
+    // const stdin = process.openStdin();
+    // stdin.addListener("data", this.prompt);
+    this.prompt("1");
   }
 
   private async decide(input: string): Promise<void> {
@@ -65,8 +66,9 @@ class Infojobs {
       default:
         process.exit();
         break;
-    }
-    this.takeInput();
+      }
+      // this.takeInput();
+    process.exit();
   }
 }
 
